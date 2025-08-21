@@ -68,6 +68,8 @@ Carthage/Build/
 Dependencies/
 .accio/
 
+
+
 # fastlane
 # It is recommended to not store the screenshots in the git repo.
 # Instead, use fastlane to re-generate the screenshots whenever they are needed.
@@ -82,6 +84,8 @@ fastlane/test_output
 # Code Injection
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
+
+echo .DS_Store >> .gitignore
 
 iOSInjectionProject/
 
