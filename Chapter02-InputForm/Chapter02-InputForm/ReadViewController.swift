@@ -29,6 +29,9 @@ class ReadViewController: UIViewController {
         let interval = UILabel()
         
         // 위치와 영역을 정의한다.
+        email.frame = CGRect(x: 50, y: 100, width: 300, height: 30)
+        update.frame = CGRect(x: 50, y: 150, width: 300, height: 30)
+        interval.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
         email.frame = CGRect(x: 50, y: 150, width: 300, height: 30)
         update.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
         interval.frame = CGRect(x: 50, y: 250, width: 300, height: 30)
@@ -36,6 +39,7 @@ class ReadViewController: UIViewController {
         // 전달받은 값을 레이블에 표시한다.
         email.text = "전달받은 이메일 : \(self.pEmail!)"
         update.text = "업데이트 여부 : \(self.pUpdate == true ? "업데이트 함" : "업데이트 안 함")"
+        interval.text = "업데이트 주기 : \(self.pInterval!)분마다"
         interval.text = "업데이트 주기 : \(Int(self.pInterval!))분마다"
         
         // 커스텀 폰트 설정
