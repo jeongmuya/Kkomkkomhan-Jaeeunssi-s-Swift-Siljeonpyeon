@@ -6,24 +6,72 @@
 //
 
 import UIKit
+import MapKit
 
 class MapAlertViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // 버튼 생성
+        let alertBtn = UIButton(type: .system)
+        
+        // 버튼 속성 설정
+        alertBtn.frame = CGRect(x: 0, y: 150, width: 100, height: 30)
+        alertBtn.center.x = self.view.frame.width / 2
+        alertBtn.setTitle("Map Alert", for: .normal)
+        alertBtn.addTarget(self, action: #selector(mapAlert(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(alertBtn)
+        
+        // 이미지 알림창 버튼 생성
+        let imageBtn = UIButton(type: .system)
+        
+        // 이미지 알림창 버튼 속성 설정
+        imageBtn.frame = CGRect(x: 0, y: 200, width: 100, height: 30)
+        imageBtn.center.x = self.view.frame.width / 2
+        imageBtn.setTitle("Image Alert", for: .normal)
+        imageBtn.addTarget(self, action: #selector(imageAlert(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(imageBtn)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func mapAlert(_ sender: UIButton) {
+        // 경고창 객체를 생성하고, OK 및 Cancel 버튼을 추가한다.
+        let alert = UIAlertController(title: nil, message: "여기가 맞습니까?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        
+        // 콘텐츠 뷰 영역에 들어갈 뷰 컨트롤러를 생성하고, 알림창에 등록한다.
+        let contentVC = MapKitViewController()
+        
+        // <-- 추가 구문 시작
+        // 뷰 컨트롤러에 맵킷 뷰를 추가한다.
+        
+        // 뷰 컨트롤러를 알림창의 콘텐츠 뷰 컨트롤러 속성에 등록한다.
+        alert.setValue(contentVC, forKeyPath: "contentViewController")
+        //<-- 추가 구문 끝
+        
+        self.present(alert, animated: false)
+        
     }
-    */
+    
+    @objc func imageAlert(_ sender: Any) {
+        // 경고창 객체를 생성하고, OK 버튼을 추가한다.
+        let alert = UIAlertController(title: nil, message: "이번 글의 평점은 다음과 같습니다.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        
+        // 콘텐츠 뷰 영역에 들어갈 뷰 컨트롤러를 생성하고, 알림창에 등록한다.
+        let contentVC = ImageViewController()
+        alert.setValue(contentVC, forKey: "contentViewController")
+        
+        self.present(alert, animated: false)
+    }
 
 }
